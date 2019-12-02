@@ -10,7 +10,6 @@ class Intcode(object):
     def __init__(self, file: str) -> None:
         """ Initialize the input """
         self.file = file
-        self.opcodes = []
         self._process_file()
 
     def _process_file(self):
@@ -26,10 +25,9 @@ class Intcode(object):
         position = 0
         self.update_dataset()
 
-        position = 0
         while position <= len(self.input):
             if self.input[position] == 1 or self.input[position] == 2:
-                import pdb; pdb.set_trace()
+                #import pdb; pdb.set_trace()
                 instructions = [
                     self.input[position],
                     self.input[position + 1],
@@ -39,10 +37,10 @@ class Intcode(object):
                 if instructions[0] == 1:
                     # This is an add operation
                     self.input[instructions[3]] = \
-                        instructions[1] + instructions[2]
+                        self.input[instructions[1]] + self.input[instructions[2]]
                 elif instructions[0] == 2:
                     self.input[instructions[3]] = \
-                        instructions[1] * instructions[2]
+                        self.input[instructions[1]] * self.input[instructions[2]]
 
                 position = position + 4
             elif self.input[position] == 99:
