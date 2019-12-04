@@ -2,13 +2,8 @@
 import re
 
 
-
 class PasswordChecker(object):
     """ Object to check passwords conforming to puzzle """
-
-    def __init__(self, pwrange: range) -> None:
-        """ Initialize the range """
-        self.pwrange = pwrange
 
     def check_samedigit(self, pw: str) -> bool:
         """ We check for repeating digits """
@@ -37,13 +32,12 @@ class PasswordChecker(object):
         else:
             return True
 
-
-    def process(self):
+    def process(self, pwrange: range):
         """ Process the range of passwords """
 
         matching = list()
 
-        for pw in self.pwrange:
+        for pw in pwrange:
             # Check increase first
             s_pw = str(pw)
             if self.check_increase(s_pw) and self.check_samedigit(s_pw):
@@ -56,6 +50,6 @@ class PasswordChecker(object):
 
 if __name__ == '__main__':
     pwrange = range(156218, 652527)
-    pw = PasswordChecker(pwrange)
+    pw = PasswordChecker()
 
-    print(pw.process())
+    print(pw.process(pwrange))
