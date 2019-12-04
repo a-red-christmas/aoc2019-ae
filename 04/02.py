@@ -20,9 +20,13 @@ class PasswordChecker(object):
             invalids = []
             for digit in groups:
                 if f'{digit * 3}' in pw:
+                    # This confirms that there are no instances of the
+                    # digit repeating more than two times
                     invalids.append(digit)
 
             if len(invalids) < len(groups):
+                # We just need to have at least one valid group of
+                # digits
                 isvalid = True
 
         return isvalid
@@ -46,7 +50,7 @@ class PasswordChecker(object):
         else:
             return True
 
-    def process(self):
+    def process(self) -> int:
         """ Process the range of passwords """
 
         matching = list()
@@ -61,6 +65,7 @@ class PasswordChecker(object):
 
 
 if __name__ == '__main__':
+    # Fill in your puzzle input in the below range:
     pwrange = range(156218, 652527)
     pw = PasswordChecker(pwrange)
 
