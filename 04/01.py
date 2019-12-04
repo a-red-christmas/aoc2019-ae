@@ -8,10 +8,8 @@ class PasswordChecker(object):
     def check_samedigit(self, pw: str) -> bool:
         """ We check for repeating digits """
         res = re.compile(r'.*(\d)\1.*')
-        if res.match(pw) is not None:
-            return True
-        else:
-            return False
+
+        return res.match(pw) is not None
 
     def check_increase(self, pw: str) -> bool:
         """ We check that digits do not decrease """
