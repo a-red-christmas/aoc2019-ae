@@ -17,20 +17,16 @@ class PasswordChecker(object):
         """ We check that digits do not decrease """
         parts = list(pw)
 
-        decrease = False
+        increase = True
 
         for i, x in enumerate(parts):
             if i > 0:
                 if int(parts[i - 1]) > int(x):
 
-                    decrease = True
+                    increase = False
                     break
 
-        if decrease == True:
-            return False
-
-        else:
-            return True
+        return increase
 
     def process(self, pwrange: range):
         """ Process the range of passwords """
@@ -44,8 +40,6 @@ class PasswordChecker(object):
                 matching.append(pw)
 
         return len(matching)
-
-
 
 
 if __name__ == '__main__':
